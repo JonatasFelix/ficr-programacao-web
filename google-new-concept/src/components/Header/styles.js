@@ -3,37 +3,31 @@ import styled from "styled-components";
 
 export const Header = styled.header`
     padding: 20px;
-`
-
-export const List = styled.ul`
+    width: 100vw;
     display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 18px;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
 `
 
-export const ListItem = styled.li`
+export const ButtonMenu = styled.button`
+    background: none;
+    border: none;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: ${props => props.active ? "#F0F0F0" : "none"};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-
-    &:hover {
-        background-color: #F0F0F0;
-    }
 `
 
-export const Icon = styled.img`
-    width: 25px;
+export const MenuImg = styled.img`
+    width: 45px;
+    position: relative;
+`
+
+export const MenuItem = styled.li`
+    cursor: pointer;
 `
 
 export const Avatar = styled.img`
-    border-radius: 50%;
-    width: 38px;
+    cursor: pointer;
+    width: 45px;
+    border-radius: 20%;
+
 `
