@@ -1,8 +1,11 @@
+###
+@ApiLink = http://localhost:3003
+
 ### Endpoint de teste
-GET https://login-system-ficr.herokuapp.com/
+GET {{ApiLink}}/
 
 ### Endpoint de cadastro de usuário
-POST https://login-system-ficr.herokuapp.com/users/signup
+POST {{ApiLink}}/users/signup
 Content-Type: application/json
 
 {
@@ -12,20 +15,20 @@ Content-Type: application/json
 }
 
 ### Endpoint de login
-POST https://login-system-ficr.herokuapp.com/users/login
+POST {{ApiLink}}/users/login
 Content-Type: application/json
 
 {
-    "email": "beltrano@gmail.com",
-    "password": "abc123"
+    "email": "fulano@gmail.com",
+    "password": "qwerty00"
 }
 
 ### Endpoint de pegar perfil do usuário
-GET https://login-system-ficr.herokuapp.com/users/profile
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyZDU0OGIxLWZlY2EtNDM1Yi05MzJiLTIxMTE2MTcxNWRlNiIsImlhdCI6MTY2MzY0MjM2OSwiZXhwIjoxNjYzNzI4NzY5fQ.HfL22vLlwRgZIbDqNY24531TGFr17LVLSa8K7LB48Rk
+GET {{ApiLink}}/users/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzAxN2JiLTJjMDgtNGNkYy1iYjYzLTdmYmQ3Y2ViZTAxZiIsImlhdCI6MTY2MzY5MzU5OSwiZXhwIjoxNjYzNzc5OTk5fQ.kjVd5xjACz43UOdvDJJDCiINfSQ3XTivICbgErurXp4
 
 ### Endpoint de alterar senha
-PUT https://login-system-ficr.herokuapp.com/users/changePassword
+PUT {{ApiLink}}/users/changePassword
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZkZGU1M2I4LTAwNTctNDk4Ny05OWE3LWI2MGQ5YjBmYTRkMSIsImlhdCI6MTY2MzY0MTI5MywiZXhwIjoxNjYzNzI3NjkzfQ.rVnifWyJ1bOOS-1QlS8PRTePum5z-tD-fcy_FfNJrE0
 Content-Type: application/json
 

@@ -56,11 +56,13 @@ export class UserController {
     public async profile(req: Request, res: Response) {
         try {
             const token = req.headers.authorization as string
+            
+            console.log(req.headers)
 
             const userBusiness = new UserBusiness()
             const user = await userBusiness.getProfile(token)
 
-            res.status(200).send({ user })
+            res.status(200).send(user)
 
         } catch (err) {
             res.status(err.statusCode || 500).send({ error: err.message || err.sqlMessage })

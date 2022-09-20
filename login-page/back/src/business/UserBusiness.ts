@@ -16,7 +16,7 @@ export class UserBusiness {
     public async signup(input: IUserInputDTO): Promise<string> {
 
         if(!input.name || !input.email || !input.password) {
-            throw new MissingParameters("name, email and password are required")
+            throw new MissingParameters("name, email and password")
         }
 
         const emailValidator = new EmailValidator()
@@ -55,9 +55,9 @@ export class UserBusiness {
     public async login(email: string, password: string): Promise<any> {
             
             if(!email || !password) {
-                throw new MissingParameters("email and password are required")
+                throw new MissingParameters("email and password")
             }
-    
+
             const emailValidator = new EmailValidator()
             if(!emailValidator.validate(email)) {
                 throw new BadRequest("Invalid email")
