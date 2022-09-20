@@ -1,0 +1,35 @@
+### Endpoint de teste
+GET https://login-system-ficr.herokuapp.com/
+
+### Endpoint de cadastro de usuário
+POST https://login-system-ficr.herokuapp.com/users/signup
+Content-Type: application/json
+
+{
+    "name": "Beltrano",
+    "email": "beltrano@gmail.com",
+    "password": "abc123"
+}
+
+### Endpoint de login
+POST https://login-system-ficr.herokuapp.com/users/login
+Content-Type: application/json
+
+{
+    "email": "beltrano@gmail.com",
+    "password": "abc123"
+}
+
+### Endpoint de pegar perfil do usuário
+GET https://login-system-ficr.herokuapp.com/users/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyZDU0OGIxLWZlY2EtNDM1Yi05MzJiLTIxMTE2MTcxNWRlNiIsImlhdCI6MTY2MzY0MjM2OSwiZXhwIjoxNjYzNzI4NzY5fQ.HfL22vLlwRgZIbDqNY24531TGFr17LVLSa8K7LB48Rk
+
+### Endpoint de alterar senha
+PUT https://login-system-ficr.herokuapp.com/users/changePassword
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZkZGU1M2I4LTAwNTctNDk4Ny05OWE3LWI2MGQ5YjBmYTRkMSIsImlhdCI6MTY2MzY0MTI5MywiZXhwIjoxNjYzNzI3NjkzfQ.rVnifWyJ1bOOS-1QlS8PRTePum5z-tD-fcy_FfNJrE0
+Content-Type: application/json
+
+{
+    "oldPassword": "abc1234",
+    "newPassword": "abc123"
+}
