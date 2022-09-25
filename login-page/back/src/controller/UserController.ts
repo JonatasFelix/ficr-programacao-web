@@ -1,19 +1,23 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { IUserInputDTO } from "../models/User";
+import { IChangePasswordInputDTO, IDeleteUserInputDTO, ILoginInputDTO, IUserInputDTO } from "../models/User";
 
 
 export class UserController {
 
-    public async signup(req: Request, res: Response) {
+    constructor(private userBusiness: UserBusiness) { };
+
+    public signup = async (req: Request, res: Response) => {
 
         try {
-            const { name, email, password } = req.body
 
-            const input: IUserInputDTO = { name, email, password }
+            const input: IUserInputDTO = {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password
+            }
 
-            const userBusiness = new UserBusiness()
-            const token = await userBusiness.signup(input)
+            const token = await this.userBusiness.signup(input)
 
             res.status(200).send({ token })
 
@@ -22,29 +26,32 @@ export class UserController {
         }
     }
 
-    public async login(req: Request, res: Response) {
-            
-            try {
-                const { email, password } = req.body
-    
-                const userBusiness = new UserBusiness()
-                const token = await userBusiness.login(email, password)
-    
-                res.status(200).send({ token })
-    
-            } catch (err) {
-                res.status(err.statusCode || 500).send({ error: err.message || err.sqlMessage })
-            }
+    public login = async (req: Request, res: Response) => {
+
+        try {
+           const input: ILoginInputDTO = {
+                email: req.body.email,
+                password: req.body.password
+           }
+
+            const token = await this.userBusiness.login(input)
+
+            res.status(200).send({ token })
+
+        } catch (err) {
+            res.status(err.statusCode || 500).send({ error: err.message || err.sqlMessage })
+        }
     }
 
-
-    public async changePassword(req: Request, res: Response) {
+    public changePassword = async (req: Request, res: Response) => {
         try {
-            const { oldPassword, newPassword } = req.body
-            const token = req.headers.authorization as string
+            const input: IChangePasswordInputDTO = {
+                token: req.headers.authorization as string,
+                oldPassword: req.body.oldPassword,
+                newPassword: req.body.newPassword
+            }
 
-            const userBusiness = new UserBusiness()
-            await userBusiness.changePassword(token, oldPassword, newPassword)
+            await this.userBusiness.changePassword(input)
 
             res.status(200).send({ message: "Password changed successfully" })
 
@@ -53,16 +60,32 @@ export class UserController {
         }
     }
 
-    public async profile(req: Request, res: Response) {
+    public profile = async (req: Request, res: Response) => {
         try {
             const token = req.headers.authorization as string
-            
-            console.log(req.headers)
 
-            const userBusiness = new UserBusiness()
-            const user = await userBusiness.getProfile(token)
+            console.log(req.headers.authorization)
+
+            const user = await this.userBusiness.getProfile(token)
 
             res.status(200).send(user)
+
+        } catch (err) {
+            res.status(err.statusCode || 500).send({ error: err.message || err.sqlMessage })
+        }
+    }
+
+    public delete = async (req: Request, res: Response) => {
+        try {
+
+            const input: IDeleteUserInputDTO = {
+                token: req.headers.authorization as string,
+                password: req.body.password
+            }
+
+            await this.userBusiness.delete(input)
+
+            res.status(200).send({ message: "User deleted successfully" })
 
         } catch (err) {
             res.status(err.statusCode || 500).send({ error: err.message || err.sqlMessage })

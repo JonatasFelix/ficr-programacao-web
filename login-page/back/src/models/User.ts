@@ -11,6 +11,22 @@ export interface IUserInputDTO {
     password: string,
 }
 
+export interface IDeleteUserInputDTO {
+    token: string,
+    password: string,
+}
+
+export interface ILoginInputDTO {
+    email: string,
+    password: string,
+}
+
+export interface IChangePasswordInputDTO {
+    token: string,
+    oldPassword: string,
+    newPassword: string,
+}
+
 export class User {
     static selectUserByEmail(email: string) {
         throw new Error("Method not implemented.");

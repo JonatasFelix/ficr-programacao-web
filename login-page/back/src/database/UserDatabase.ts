@@ -5,6 +5,13 @@ class UserDatabase extends BaseDatabase {
 
     public static TABLE_USER = "user"
 
+    public async deleteUser(id: string): Promise<void> {
+        await BaseDatabase.getConnection()
+            .delete()
+            .from(UserDatabase.TABLE_USER)
+            .where({ id })
+    }
+
     public async insertUser(user: User): Promise<void> {
         await BaseDatabase.getConnection()
             .insert({

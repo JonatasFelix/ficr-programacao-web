@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -13,10 +14,17 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: ${localStorage.getItem('theme') === 'dark' ? 'var(--primary-color-dark)' : 'var(--primary-color-white)'};
+        background: linear-gradient(329deg, rgba(115,0,255,1) 25%, rgba(255,136,0,1) 92%);
         margin: 0 auto;
         max-width: 100vw;
         overflow: hidden;
+        min-height: 100vh;
+        width: 100vw;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
 
     button {
@@ -29,3 +37,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default GlobalStyle;
+
+export const Container = styled.div`
+    width: 50vw;
+    height: 50vh;
+    background: #ffffff;
+
+    min-width: 350px;
+    min-height: 350px;
+
+    border-radius: 80px 5px;
+`;
